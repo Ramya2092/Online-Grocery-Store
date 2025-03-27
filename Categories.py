@@ -90,7 +90,7 @@ class Product:
                                                                         ):
                                         print(f"  {i}               {q}   ")
 
-                                print("\n1. Next \n2. Go to Bill\n3.View Stocks \n4.Remove products \n5.Exit ")
+                                print("\n1. Next \n2. Go to Bill\n3.View Stocks \n4.Reduce Quantity \n5.Exit ")
                                 n = int(input("Enter Your Option: "))
                         if (n == 4):                 
                                 if len(self.item_id) != 0:              
@@ -101,9 +101,10 @@ class Product:
                                                         Quantity = float(input("Enter Quanity to reduce : "))
                                                         if Quantity <=self.item_quantity[n]:
                                                                 self.item_quantity[n] -= Quantity
-                                                                print(self.item_quantity[n])
-                                                                self.Product_Stock[n] +=  Quantity
-                                                                print(self.Product_Stock[n])
+                                                                # print(self.item_quantity[n])
+                                                                for x in range(len(self.Product_Id)):
+                                                                        if (self.Product_Id[x] == id):
+                                                                               self.Product_Stock[x] +=  Quantity
                                                                 Reduced_Amount = self.Product_Price[id-1] * Quantity
                                                                 self.item_amount[n] -= Reduced_Amount
                                                                 print("Reduced_Amount", Reduced_Amount)
@@ -112,8 +113,11 @@ class Product:
 
                                                         else:
                                                                 print(f"Available Quantity : {self.item_quantity[n]},\nSo, You can't reduce your quantity of the item\n")
+                                                if (id) not in self.item_id:                       
+                                                        print("Selected item not in list")
                                 else:
-                                        print("No item listing")        
+                                        print("No item listing")
+                                
                                 print("\n1. Next \n2. Go to Bill\n3. View Stocks \n4. Reduce Quantity \n5.Exit ")
                                 n = int(input("Enter Your Option: "))
                         if (n == 5):
